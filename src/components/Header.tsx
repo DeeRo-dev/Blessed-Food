@@ -1,9 +1,30 @@
+import { useLayoutEffect, useRef } from 'react'
+
 import { Icon } from '@/components/Icon'
 import { business } from '@/data/products'
 
 export function Header() {
+  const headerRef = useRef<HTMLElement>(null)
+
+  useLayoutEffect(() => {
+    const node = headerRef.current
+    if (!node) return
+
+    const syncHeight = () => {
+      document.documentElement.style.setProperty('--header-h', `${node.offsetHeight}px`)
+    }
+    syncHeight()
+
+    const observer = new ResizeObserver(syncHeight)
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <header className="fixed top-0 z-50 w-full bg-surface/90 pt-safe shadow-[0_1px_8px_rgba(43,33,24,0.05)] backdrop-blur-xl">
+    <header
+      ref={headerRef}
+      className="fixed top-0 z-50 w-full bg-surface/90 pt-safe shadow-[0_1px_8px_rgba(43,33,24,0.05)] backdrop-blur-xl"
+    >
       <div className="flex h-20 items-center justify-between gap-space-sm px-space-md">
         <div className="flex min-w-0 items-center gap-space-sm">
           <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary font-headline-sm text-headline-sm font-bold text-on-primary shadow-sm">

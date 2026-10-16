@@ -30,7 +30,10 @@ function App() {
   )
 
   return (
-    <main className="relative flex min-h-screen w-full flex-col bg-surface pt-20 pb-24">
+    <main
+      className="relative flex min-h-screen w-full flex-col bg-surface pb-24"
+      style={{ paddingTop: 'var(--header-h, 6rem)' }}
+    >
       <Header />
       <div className="flex w-full flex-col pb-28">
         <AmbientBanner />
