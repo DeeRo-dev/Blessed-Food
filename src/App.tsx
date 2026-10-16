@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 
 import { AmbientBanner } from '@/components/AmbientBanner'
-import { BottomNav } from '@/components/BottomNav'
 import { CategoryChips } from '@/components/CategoryChips'
 import { Header } from '@/components/Header'
 import { FootNote, MidBanner } from '@/components/MidBanner'
@@ -13,7 +12,6 @@ import { useProducts } from '@/hooks/useProducts'
 function App() {
   const { products } = useProducts()
   const [activeCategory, setActiveCategory] = useState('Todos')
-  const [activeNav, setActiveNav] = useState('carta')
   const cart = useCart(products)
 
   const categories = useMemo(
@@ -31,7 +29,7 @@ function App() {
 
   return (
     <main
-      className="relative flex min-h-screen w-full flex-col bg-surface pb-24"
+      className="relative flex min-h-screen w-full flex-col bg-surface"
       style={{ paddingTop: 'var(--header-h, 6rem)' }}
     >
       <Header />
@@ -56,7 +54,6 @@ function App() {
       </div>
 
       <StickyCheckoutBar cart={cart} />
-      <BottomNav active={activeNav} onChange={setActiveNav} />
     </main>
   )
 }

@@ -10,7 +10,7 @@ export function StickyCheckoutBar({ cart }: { cart: UseCartReturn }) {
       : `${cart.lineItems.length} productos distintos`
 
   return (
-    <aside className="fixed bottom-20 left-3 right-3 z-40 mx-auto max-w-md">
+    <aside className="fixed bottom-4 left-3 right-3 z-40 mx-auto max-w-md">
       {cart.belowMinimum && (
         <div className="mb-2 rounded-xl bg-surface-container-highest px-3 py-2 text-center font-label-sm text-label-sm text-on-surface-variant shadow-sm">
           Pedido mínimo: 6 unidades (llevás {cart.totalUnits})
