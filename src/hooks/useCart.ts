@@ -45,21 +45,21 @@ export function useCart(products: Product[]) {
         .map((product) => {
           const quantity = cart[product.id]
           const lineTotal = product.price * quantity
-          return { product, quantity, lineTotal }
+          const units = quantity * product.unitsPerItem
+          const missingUnits = product.minUnits ? Math.max(product.minUnits - units, 0) : 0
+          return { product, quantity, lineTotal, units, missingUnits }
         }),
     [cart, products],
   )
 
   const totalItems = useMemo(() => lineItems.reduce((sum, item) => sum + item.quantity, 0), [lineItems])
 
-  const totalUnits = useMemo(
-    () => lineItems.reduce((sum, item) => sum + item.quantity * item.product.unitsPerItem, 0),
-    [lineItems],
-  )
-
   const total = useMemo(() => lineItems.reduce((sum, item) => sum + item.lineTotal, 0), [lineItems])
 
-  const belowMinimum = totalItems > 0 && totalUnits < business.minUnits
+  const itemsBelowMinimum = useMemo(
+    () => lineItems.filter((item) => item.missingUnits > 0),
+    [lineItems],
+  )
 
   const whatsappUrl = useMemo(() => {
     if (lineItems.length === 0) return null
@@ -81,9 +81,8 @@ export function useCart(products: Product[]) {
     cart,
     lineItems,
     totalItems,
-    totalUnits,
     total,
-    belowMinimum,
+    itemsBelowMinimum,
     whatsappUrl,
     increment,
     decrement,

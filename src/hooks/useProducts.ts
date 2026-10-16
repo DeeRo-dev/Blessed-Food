@@ -24,6 +24,7 @@ function rowToProduct(row: Record<string, string>, index: number): Product | nul
 
   const originalPrice = parsePrice(row['Precio Anterior (opcional)'] ?? '')
   const unitsPerItem = parsePrice(row['Unidades por item'] ?? '') || 1
+  const minUnits = parsePrice(row['Mínimo de compra (opcional)'] ?? '')
   const activoRaw = row['Activo']?.trim()
   const active = activoRaw ? isTruthy(activoRaw) : true
 
@@ -36,6 +37,7 @@ function rowToProduct(row: Record<string, string>, index: number): Product | nul
     price,
     originalPrice: originalPrice && originalPrice > price ? originalPrice : undefined,
     unitsPerItem,
+    minUnits: minUnits && minUnits > 0 ? minUnits : undefined,
     image: row['Imagen (URL)'] ? resolveImageUrl(row['Imagen (URL)']) : '',
     badge: row['Etiqueta']?.trim() ?? '',
     category: row['Categoria']?.trim() || 'Otros',

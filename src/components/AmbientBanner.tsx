@@ -25,19 +25,11 @@ export function AmbientBanner() {
             </p>
           </div>
         </div>
-        <div className="mt-space-sm flex items-center justify-between gap-2 rounded-lg bg-surface-container/70 px-space-sm py-1.5 pt-space-xs text-on-surface-variant">
-          <div className="flex min-w-0 items-center gap-1.5 truncate">
-            <Icon name="favorite" className="text-[16px] text-primary" />
-            <span className="truncate font-label-md text-label-md font-medium text-primary">
-              Promo: Si llevás 6, pagás 5
-            </span>
-          </div>
-          <div className="flex flex-shrink-0 items-center gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-            <span className="font-label-sm text-label-sm font-bold text-on-surface">
-              Mín. {business.minUnits} unidades
-            </span>
-          </div>
+        <div className="mt-space-sm flex items-center gap-2 rounded-lg bg-surface-container/70 px-space-sm py-1.5 pt-space-xs text-on-surface-variant">
+          <Icon name="favorite" className="text-[16px] text-primary" />
+          <span className="truncate font-label-md text-label-md font-medium text-primary">
+            Promo: Si llevás 6, pagás 5
+          </span>
         </div>
       </div>
     </div>

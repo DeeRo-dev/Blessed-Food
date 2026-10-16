@@ -106,6 +106,12 @@ export function ProductCard({ product, quantity, onIncrement, onDecrement }: Pro
             </span>
             <span className="font-label-sm text-label-sm text-on-surface-variant">c/u</span>
           </div>
+          {product.minUnits && (
+            <span className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-secondary-container px-2 py-0.5 font-label-sm text-label-sm text-on-secondary-container">
+              <Icon name="inventory_2" className="text-[12px]" />
+              Pedido mínimo: {product.minUnits} unidades
+            </span>
+          )}
         </div>
       </div>
       <div className="flex items-center justify-between rounded-lg bg-surface-container/50 px-space-sm py-1.5 pt-space-xs">

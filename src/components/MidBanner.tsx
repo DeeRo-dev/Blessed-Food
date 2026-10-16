@@ -10,13 +10,14 @@ export function MidBanner() {
         </div>
         <div className="min-w-0 flex-1">
           <span className="font-label-sm text-label-sm font-bold tracking-wider text-on-secondary-container uppercase">
-            Condición de compra
+            ¿Tenés dudas?
           </span>
           <p className="mt-0.5 font-title-sm text-title-sm leading-tight text-on-surface">
-            Pedidos desde {business.minUnits} unidades en adelante
+            Algunos productos tienen pedido mínimo
           </p>
           <p className="mt-0.5 font-body-sm text-body-sm text-on-surface-variant">
-            ¡Hacé tu pedido con anticipación por WhatsApp al {business.whatsappDisplay}!
+            Lo vas a ver en la tarjeta de cada producto. Consultas por WhatsApp al{' '}
+            {business.whatsappDisplay}.
           </p>
         </div>
       </div>

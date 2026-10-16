@@ -10,6 +10,7 @@ export interface Product {
   price: number
   originalPrice?: number
   unitsPerItem: number
+  minUnits?: number
   image: string
   badge: string
   category: string
@@ -29,7 +30,6 @@ export const business = {
   initials: 'BF',
   whatsapp: `549${rawPhone}`,
   whatsappDisplay: formatPhoneDisplay(rawPhone),
-  minUnits: 6,
 }
 
 export const sheetConfig = {
@@ -59,6 +59,7 @@ export const fallbackProducts: Product[] = [
     description: 'Con abundante muzzarella y orégano. Ricas, caseras y listas para tu mesa.',
     price: 7200,
     unitsPerItem: 1,
+    minUnits: 6,
     image: muzzarella,
     badge: 'Con Muzzarella',
     category: 'Con Muzzarella',
@@ -71,6 +72,7 @@ export const fallbackProducts: Product[] = [
     description: 'Salsa de tomate casera cocida a fuego lento y orégano de huerta.',
     price: 2000,
     unitsPerItem: 1,
+    minUnits: 6,
     image: tomate,
     badge: 'Clásica',
     category: 'Prepizzas Tomate',
@@ -83,6 +85,7 @@ export const fallbackProducts: Product[] = [
     description: 'Cebollas doradas suaves, aceite de oliva y pimienta negra.',
     price: 2300,
     unitsPerItem: 1,
+    minUnits: 6,
     image: cebolla,
     badge: 'Fugazza',
     category: 'Prepizzas Cebolla',
@@ -95,6 +98,7 @@ export const fallbackProducts: Product[] = [
     description: 'Harina pura de molienda integral, liviana y súper crocante con salsa suave.',
     price: 2600,
     unitsPerItem: 1,
+    minUnits: 6,
     image: integral,
     badge: 'Integral',
     category: 'Harina Integral',

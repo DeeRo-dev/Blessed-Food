@@ -11,9 +11,14 @@ export function StickyCheckoutBar({ cart }: { cart: UseCartReturn }) {
 
   return (
     <aside className="fixed bottom-4 left-3 right-3 z-40 mx-auto max-w-md">
-      {cart.belowMinimum && (
-        <div className="mb-2 rounded-xl bg-surface-container-highest px-3 py-2 text-center font-label-sm text-label-sm text-on-surface-variant shadow-sm">
-          Pedido mínimo: 6 unidades (llevás {cart.totalUnits})
+      {cart.itemsBelowMinimum.length > 0 && (
+        <div className="mb-2 flex flex-col gap-1 rounded-xl bg-surface-container-highest px-3 py-2 text-center font-label-sm text-label-sm text-on-surface-variant shadow-sm">
+          {cart.itemsBelowMinimum.map((item) => (
+            <span key={item.product.id}>
+              {item.product.name}: faltan {item.missingUnits} unidades para el mínimo de{' '}
+              {item.product.minUnits}
+            </span>
+          ))}
         </div>
       )}
       <div className="flex items-center justify-between gap-2 rounded-full bg-inverse-surface p-2 pr-2 pl-4 text-inverse-on-surface shadow-2xl shadow-[0_12px_36px_rgba(43,33,24,0.3)]">

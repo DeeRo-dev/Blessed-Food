@@ -39,7 +39,7 @@ export function Header() {
             <div className="mt-space-2xs flex items-center gap-space-xs">
               <span className="inline-flex items-center gap-1 rounded-full bg-tertiary-fixed px-2 py-0.5 font-label-sm text-label-sm text-on-tertiary-fixed">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-tertiary" />
-                Mín. {business.minUnits} unidades en adelante
+                Tomando pedidos hoy
               </span>
             </div>
           </div>
