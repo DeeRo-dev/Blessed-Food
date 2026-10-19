@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 
+import heartIcon from '@/assets/brand/heart-icon.png'
 import { Icon } from '@/components/Icon'
 import { business } from '@/data/products'
 
@@ -27,8 +28,8 @@ export function Header() {
     >
       <div className="flex h-20 items-center justify-between gap-space-sm px-space-md">
         <div className="flex min-w-0 items-center gap-space-sm">
-          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary font-headline-sm text-headline-sm font-bold text-on-primary shadow-sm">
-            {business.initials}
+          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-surface-bright p-1.5 shadow-sm">
+            <img src={heartIcon} alt="" className="h-full w-full object-contain" />
           </div>
           <div className="flex min-w-0 flex-col">
             <div className="flex items-center gap-space-xs">
