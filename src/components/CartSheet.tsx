@@ -1,4 +1,5 @@
 import { Icon } from '@/components/Icon'
+import { WhatsAppCheckoutButton } from '@/components/WhatsAppCheckoutButton'
 import type { UseCartReturn } from '@/hooks/useCart'
 
 interface Props {
@@ -110,15 +111,7 @@ export function CartSheet({ cart, open, onClose }: Props) {
                 ${cart.total.toLocaleString('es-AR')}
               </span>
             </div>
-            <a
-              className="flex h-12 items-center justify-center gap-1.5 rounded-full bg-[#25D366] font-label-lg text-label-lg text-on-primary shadow-sm transition-all hover:brightness-105 active:scale-95"
-              href={cart.whatsappUrl ?? undefined}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="chat" className="text-[20px]" />
-              Pedir por WhatsApp
-            </a>
+            <WhatsAppCheckoutButton cart={cart} className="h-12 shadow-sm" />
           </div>
         )}
       </div>

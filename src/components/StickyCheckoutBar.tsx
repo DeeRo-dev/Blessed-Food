@@ -1,4 +1,5 @@
 import { Icon } from '@/components/Icon'
+import { WhatsAppCheckoutButton } from '@/components/WhatsAppCheckoutButton'
 import type { UseCartReturn } from '@/hooks/useCart'
 
 interface Props {
@@ -48,15 +49,10 @@ export function StickyCheckoutBar({ cart, onOpenCart }: Props) {
             </span>
           </div>
         </button>
-        <a
-          className="flex h-11 flex-shrink-0 items-center gap-1.5 rounded-full bg-[#25D366] px-4 font-label-lg text-label-lg text-on-primary shadow-[0_2px_10px_rgba(37,211,102,0.35)] transition-all hover:brightness-105 active:scale-95"
-          href={cart.whatsappUrl ?? undefined}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="chat" className="text-[20px]" />
-          <span className="tracking-tight">Pedir por WhatsApp</span>
-        </a>
+        <WhatsAppCheckoutButton
+          cart={cart}
+          className="h-11 flex-shrink-0 px-4 shadow-[0_2px_10px_rgba(37,211,102,0.35)]"
+        />
       </div>
     </aside>
   )
