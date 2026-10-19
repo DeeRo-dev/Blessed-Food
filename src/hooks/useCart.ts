@@ -75,6 +75,14 @@ export function useCart(products: Product[]) {
     return `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(message)}`
   }, [lineItems, total])
 
+  const removeItem = useCallback((productId: string) => {
+    setCart((prev) => {
+      const next = { ...prev }
+      delete next[productId]
+      return next
+    })
+  }, [])
+
   const clearCart = useCallback(() => setCart({}), [])
 
   return {
@@ -86,6 +94,7 @@ export function useCart(products: Product[]) {
     whatsappUrl,
     increment,
     decrement,
+    removeItem,
     clearCart,
   }
 }

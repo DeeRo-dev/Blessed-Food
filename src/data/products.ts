@@ -3,6 +3,8 @@ import integral from '@/assets/products/integral.jpg'
 import muzzarella from '@/assets/products/muzzarella.jpg'
 import tomate from '@/assets/products/tomate.jpg'
 
+export type Section = 'Salados' | 'Dulces'
+
 export interface Product {
   id: string
   name: string
@@ -14,6 +16,7 @@ export interface Product {
   image: string
   badge: string
   category: string
+  section: Section
   noteText: string
   isPromo: boolean
 }
@@ -50,6 +53,7 @@ export const fallbackProducts: Product[] = [
     image: muzzarella,
     badge: 'PROMO 6x5',
     category: 'Con Muzzarella',
+    section: 'Salados',
     noteText: '¡Ahorrás $7.200!',
     isPromo: true,
   },
@@ -63,6 +67,7 @@ export const fallbackProducts: Product[] = [
     image: muzzarella,
     badge: 'Con Muzzarella',
     category: 'Con Muzzarella',
+    section: 'Salados',
     noteText: 'Abundante queso muzzarella',
     isPromo: false,
   },
@@ -76,6 +81,7 @@ export const fallbackProducts: Product[] = [
     image: tomate,
     badge: 'Clásica',
     category: 'Prepizzas Tomate',
+    section: 'Salados',
     noteText: 'Masa esponjosa casera',
     isPromo: false,
   },
@@ -89,6 +95,7 @@ export const fallbackProducts: Product[] = [
     image: cebolla,
     badge: 'Fugazza',
     category: 'Prepizzas Cebolla',
+    section: 'Salados',
     noteText: 'Cebolla dorada al horno',
     isPromo: false,
   },
@@ -102,6 +109,7 @@ export const fallbackProducts: Product[] = [
     image: integral,
     badge: 'Integral',
     category: 'Harina Integral',
+    section: 'Salados',
     noteText: 'Harina integral pura',
     isPromo: false,
   },

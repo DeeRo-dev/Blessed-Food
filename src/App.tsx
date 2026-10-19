@@ -1,30 +1,44 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { AmbientBanner } from '@/components/AmbientBanner'
+import { CartSheet } from '@/components/CartSheet'
 import { CategoryChips } from '@/components/CategoryChips'
 import { Header } from '@/components/Header'
 import { FootNote, MidBanner } from '@/components/MidBanner'
 import { ProductCard } from '@/components/ProductCard'
+import { SectionTabs } from '@/components/SectionTabs'
 import { StickyCheckoutBar } from '@/components/StickyCheckoutBar'
+import type { Section } from '@/data/products'
 import { useCart } from '@/hooks/useCart'
 import { useProducts } from '@/hooks/useProducts'
 
 function App() {
   const { products } = useProducts()
+  const [activeSection, setActiveSection] = useState<Section>('Salados')
   const [activeCategory, setActiveCategory] = useState('Todos')
+  const [cartOpen, setCartOpen] = useState(false)
   const cart = useCart(products)
 
-  const categories = useMemo(
-    () => ['Todos', ...Array.from(new Set(products.map((product) => product.category)))],
-    [products],
+  const productsInSection = useMemo(
+    () => products.filter((product) => product.section === activeSection),
+    [products, activeSection],
   )
+
+  const categories = useMemo(
+    () => ['Todos', ...Array.from(new Set(productsInSection.map((product) => product.category)))],
+    [productsInSection],
+  )
+
+  useEffect(() => {
+    setActiveCategory('Todos')
+  }, [activeSection])
 
   const visibleProducts = useMemo(
     () =>
       activeCategory === 'Todos'
-        ? products
-        : products.filter((product) => product.category === activeCategory),
-    [activeCategory, products],
+        ? productsInSection
+        : productsInSection.filter((product) => product.category === activeCategory),
+    [activeCategory, productsInSection],
   )
 
   return (
@@ -35,6 +49,7 @@ function App() {
       <Header />
       <div className="flex w-full flex-col pb-28">
         <AmbientBanner />
+        <SectionTabs active={activeSection} onChange={setActiveSection} />
         <CategoryChips categories={categories} active={activeCategory} onChange={setActiveCategory} />
 
         <div className="mt-space-xs flex flex-col gap-space-md px-space-md">
@@ -53,7 +68,8 @@ function App() {
         </div>
       </div>
 
-      <StickyCheckoutBar cart={cart} />
+      <StickyCheckoutBar cart={cart} onOpenCart={() => setCartOpen(true)} />
+      <CartSheet cart={cart} open={cartOpen} onClose={() => setCartOpen(false)} />
     </main>
   )
 }

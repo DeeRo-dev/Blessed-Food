@@ -1,7 +1,12 @@
 import { Icon } from '@/components/Icon'
 import type { UseCartReturn } from '@/hooks/useCart'
 
-export function StickyCheckoutBar({ cart }: { cart: UseCartReturn }) {
+interface Props {
+  cart: UseCartReturn
+  onOpenCart: () => void
+}
+
+export function StickyCheckoutBar({ cart, onOpenCart }: Props) {
   if (cart.totalItems === 0) return null
 
   const label =
@@ -22,7 +27,11 @@ export function StickyCheckoutBar({ cart }: { cart: UseCartReturn }) {
         </div>
       )}
       <div className="flex items-center justify-between gap-2 rounded-full bg-inverse-surface p-2 pr-2 pl-4 text-inverse-on-surface shadow-2xl shadow-[0_12px_36px_rgba(43,33,24,0.3)]">
-        <div className="flex min-w-0 items-center gap-3">
+        <button
+          type="button"
+          onClick={onOpenCart}
+          className="flex min-w-0 flex-1 items-center gap-3 text-left"
+        >
           <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-surface/15">
             <Icon name="shopping_bag" className="text-[22px] text-inverse-on-surface" />
             <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary font-label-sm text-label-sm font-bold text-on-primary">
@@ -30,14 +39,15 @@ export function StickyCheckoutBar({ cart }: { cart: UseCartReturn }) {
             </span>
           </div>
           <div className="flex min-w-0 flex-col">
-            <span className="truncate font-label-sm text-label-sm text-inverse-on-surface/75">
+            <span className="flex items-center gap-0.5 truncate font-label-sm text-label-sm text-inverse-on-surface/75">
               {label}
+              <Icon name="expand_less" className="text-[14px]" />
             </span>
             <span className="font-price-tag text-price-tag leading-none text-inverse-on-surface">
               ${cart.total.toLocaleString('es-AR')}
             </span>
           </div>
-        </div>
+        </button>
         <a
           className="flex h-11 flex-shrink-0 items-center gap-1.5 rounded-full bg-[#25D366] px-4 font-label-lg text-label-lg text-on-primary shadow-[0_2px_10px_rgba(37,211,102,0.35)] transition-all hover:brightness-105 active:scale-95"
           href={cart.whatsappUrl ?? undefined}

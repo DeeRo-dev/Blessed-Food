@@ -1,7 +1,7 @@
 import Papa from 'papaparse'
 import { useEffect, useState } from 'react'
 
-import { fallbackProducts, sheetConfig, type Product } from '@/data/products'
+import { fallbackProducts, sheetConfig, type Product, type Section } from '@/data/products'
 import { resolveImageUrl } from '@/lib/driveImage'
 
 function parsePrice(raw: string): number | undefined {
@@ -27,6 +27,8 @@ function rowToProduct(row: Record<string, string>, index: number): Product | nul
   const minUnits = parsePrice(row['Mínimo de compra (opcional)'] ?? '')
   const activoRaw = row['Activo']?.trim()
   const active = activoRaw ? isTruthy(activoRaw) : true
+  const sectionRaw = row['Sección (Dulces/Salados)']?.trim().toLowerCase()
+  const section: Section = sectionRaw === 'dulces' ? 'Dulces' : 'Salados'
 
   if (!active) return null
 
@@ -41,6 +43,7 @@ function rowToProduct(row: Record<string, string>, index: number): Product | nul
     image: row['Imagen (URL)'] ? resolveImageUrl(row['Imagen (URL)']) : '',
     badge: row['Etiqueta']?.trim() ?? '',
     category: row['Categoria']?.trim() || 'Otros',
+    section,
     noteText: row['Nota']?.trim() ?? '',
     isPromo: Boolean(originalPrice && originalPrice > price),
   }
