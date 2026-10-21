@@ -13,6 +13,7 @@ export interface Product {
   originalPrice?: number
   unitsPerItem: number
   minUnits?: number
+  unitLabel: string
   image: string
   badge: string
   category: string
@@ -50,6 +51,7 @@ export const fallbackProducts: Product[] = [
     price: 36000,
     originalPrice: 43200,
     unitsPerItem: 6,
+    unitLabel: 'c/u',
     image: muzzarella,
     badge: 'PROMO 6x5',
     category: 'Con Muzzarella',
@@ -63,6 +65,7 @@ export const fallbackProducts: Product[] = [
     description: 'Con abundante muzzarella y orégano. Ricas, caseras y listas para tu mesa.',
     price: 7200,
     unitsPerItem: 1,
+    unitLabel: 'c/u',
     minUnits: 6,
     image: muzzarella,
     badge: 'Con Muzzarella',
@@ -77,6 +80,7 @@ export const fallbackProducts: Product[] = [
     description: 'Salsa de tomate casera cocida a fuego lento y orégano de huerta.',
     price: 2000,
     unitsPerItem: 1,
+    unitLabel: 'c/u',
     minUnits: 6,
     image: tomate,
     badge: 'Clásica',
@@ -91,6 +95,7 @@ export const fallbackProducts: Product[] = [
     description: 'Cebollas doradas suaves, aceite de oliva y pimienta negra.',
     price: 2300,
     unitsPerItem: 1,
+    unitLabel: 'c/u',
     minUnits: 6,
     image: cebolla,
     badge: 'Fugazza',
@@ -105,6 +110,7 @@ export const fallbackProducts: Product[] = [
     description: 'Harina pura de molienda integral, liviana y súper crocante con salsa suave.',
     price: 2600,
     unitsPerItem: 1,
+    unitLabel: 'c/u',
     minUnits: 6,
     image: integral,
     badge: 'Integral',

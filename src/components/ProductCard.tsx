@@ -86,7 +86,13 @@ export function ProductCard({ product, quantity, onIncrement, onDecrement }: Pro
     <article className="relative flex flex-col gap-space-sm overflow-hidden rounded-xl bg-surface-container-low p-space-sm shadow-sm">
       <div className="flex gap-space-sm">
         <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-surface-container">
-          <img className="h-full w-full object-cover" src={product.image} alt={product.name} />
+          {product.image ? (
+            <img className="h-full w-full object-cover" src={product.image} alt={product.name} />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <Icon name="restaurant" className="text-[32px] text-outline" />
+            </div>
+          )}
           <span className="absolute top-1.5 left-1.5 rounded bg-surface-container-lowest/90 px-1.5 py-0.5 font-label-sm text-label-sm text-primary backdrop-blur-sm">
             {product.badge}
           </span>
@@ -104,7 +110,9 @@ export function ProductCard({ product, quantity, onIncrement, onDecrement }: Pro
             <span className="font-headline-sm text-headline-sm font-bold text-on-surface">
               ${product.price.toLocaleString('es-AR')}
             </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant">c/u</span>
+            <span className="font-label-sm text-label-sm text-on-surface-variant">
+              {product.unitLabel}
+            </span>
           </div>
           {product.minUnits && (
             <span className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-secondary-container px-2 py-0.5 font-label-sm text-label-sm text-on-secondary-container">

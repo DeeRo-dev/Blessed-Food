@@ -9,7 +9,10 @@ export function resolveImageUrl(rawUrl: string): string {
   const driveId = driveMatch?.[1] ?? (url.includes('drive.google.com') ? driveIdMatch?.[1] : undefined)
 
   if (driveId) {
-    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w1000`
+    // drive.google.com/thumbnail redirige acá, pero el primer salto no carga
+    // de forma confiable como <img> (sus headers lo bloquean en el navegador
+    // aunque curl lo siga bien) — se arma directo el link final.
+    return `https://lh3.googleusercontent.com/d/${driveId}=w1000`
   }
 
   return url

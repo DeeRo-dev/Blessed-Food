@@ -40,6 +40,7 @@ function rowToProduct(row: Record<string, string>, index: number): Product | nul
     originalPrice: originalPrice && originalPrice > price ? originalPrice : undefined,
     unitsPerItem,
     minUnits: minUnits && minUnits > 0 ? minUnits : undefined,
+    unitLabel: row['Unidad de venta']?.trim() || 'c/u',
     image: row['Imagen (URL)'] ? resolveImageUrl(row['Imagen (URL)']) : '',
     badge: row['Etiqueta']?.trim() ?? '',
     category: row['Categoria']?.trim() || 'Otros',
@@ -53,8 +54,8 @@ async function fetchSheetProducts(): Promise<Product[]> {
   if (!sheetConfig.spreadsheetId) {
     throw new Error('Falta configurar SHEET_ID')
   }
-  const url = `https://docs.google.com/spreadsheets/d/${sheetConfig.spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetConfig.sheetName)}`
-  const response = await fetch(url)
+  const url = `https://docs.google.com/spreadsheets/d/${sheetConfig.spreadsheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetConfig.sheetName)}&_=${Date.now()}`
+  const response = await fetch(url, { cache: 'no-store' })
   if (!response.ok) {
     throw new Error(`No se pudo leer la planilla (status ${response.status})`)
   }
